@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Dimension Financial Decision-Making Assessment | Chinmay Ananda</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #5B4BB5;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --red-light: #FCE8E8;
+    --red-dark: #A32D2D;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-tertiary: #888;
+    --border: #e0e0e0;
+    --bg: #ffffff;
+    --bg-secondary: #f7f7f5;
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f4f3f0;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px 16px 48px;
+  }
+
+  .container {
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 680px;
+    overflow: hidden;
+  }
+
+  /* ── HEADER BAND ─────────────────────────────────────────── */
+  .header-band {
+    background: var(--purple);
+    padding: 20px 28px 18px;
+    text-align: center;
+  }
+  .header-band .brand {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .header-band h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  /* ── PROGRESS BAR ────────────────────────────────────────── */
+  .progress-wrap {
+    padding: 0 28px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-bar-bg {
+    height: 4px;
+    background: var(--border);
+    margin: 0;
+  }
+  .progress-bar-fill {
+    height: 4px;
+    background: var(--purple);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0 10px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  /* ── SCREENS ─────────────────────────────────────────────── */
+  .screen { display: none; padding: 28px; }
+  .screen.active { display: block; }
+
+  /* ── INTRO ───────────────────────────────────────────────── */
+  .intro-hero { text-align: center; margin-bottom: 28px; }
+  .intro-hero h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .intro-hero p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 20px 0;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 700; color: var(--purple); }
+  .stat-lbl { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .form-group label .req { color: #D85A30; margin-left: 2px; }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.15s;
+    font-family: inherit;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus { border-color: var(--purple); }
+  .form-group .hint {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: 5px;
+  }
+  .error-msg {
+    display: none;
+    font-size: 13px;
+    color: #D85A30;
+    text-align: center;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #FAECE7;
+    border-radius: var(--radius);
+  }
+
+  /* ── QUESTION ────────────────────────────────────────────── */
+  .dim-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+  .q-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .q-context {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--bg);
+  }
+  .option:hover { border-color: #aaa; background: var(--bg-secondary); }
+  .option.selected { border-color: var(--purple); background: var(--purple-light); }
+  .option-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .option.selected .option-radio {
+    background: var(--purple);
+    border-color: var(--purple);
+  }
+  .option-radio-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    display: none;
+  }
+  .option.selected .option-radio-dot { display: block; }
+  .option-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ── NAVIGATION ──────────────────────────────────────────── */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .q-counter { font-size: 13px; color: var(--text-tertiary); }
+
+  /* ── BUTTONS ─────────────────────────────────────────────── */
+  .btn {
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .btn:hover { background: var(--bg-secondary); }
+  .btn:disabled { opacity: 0.35; cursor: default; }
+  .btn-primary {
+    background: var(--purple);
+    color: #fff;
+    border-color: var(--purple);
+  }
+  .btn-primary:hover { background: var(--purple-dark); border-color: var(--purple-dark); }
+  .btn-primary:disabled { background: var(--purple); opacity: 0.35; }
+  .btn-full { width: 100%; padding: 13px; font-size: 15px; }
+  .btn-gold {
+    background: #854F0B;
+    color: #fff;
+    border-color: #854F0B;
+  }
+  .btn-gold:hover { background: #633806; border-color: #633806; }
+  .btn-outline-purple {
+    background: transparent;
+    color: var(--purple);
+    border-color: var(--purple);
+  }
+  .btn-outline-purple:hover { background: var(--purple-light); }
+
+  /* ── RESULT ──────────────────────────────────────────────── */
+  .result-hero { text-align: center; margin-bottom: 24px; }
+  .result-score {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .result-score-sub { font-size: 13px; color: var(--text-tertiary); margin-bottom: 10px; }
+  .stage-pill {
+    display: inline-block;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .result-headline {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .result-subline {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ── DIM BARS ────────────────────────────────────────────── */
+  .dim-section { margin: 20px 0; }
+  .dim-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .dim-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .dim-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    width: 145px;
+    flex-shrink: 0;
+  }
+  .dim-bar-bg {
+    flex: 1;
+    height: 7px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .dim-bar-fill {
+    height: 7px;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+  }
+  .dim-pct {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 32px;
+    text-align: right;
+  }
+
+  /* ── PRODUCT CARDS ───────────────────────────────────────── */
+  .products-section { margin-top: 20px; }
+  .products-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .product-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .product-card.featured { border-color: var(--purple); }
+  .product-card.gold { border-color: #BA7517; }
+  .product-badge {
+    position: absolute;
+    top: -1px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 0 0 8px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .badge-purple { background: var(--purple); color: #fff; }
+  .badge-gold { background: #BA7517; color: #fff; }
+  .product-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .product-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .price-now { font-size: 24px; font-weight: 700; }
+  .price-now.purple { color: var(--purple); }
+  .price-now.gold { color: #854F0B; }
+  .price-was {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+  }
+  .price-save {
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--teal-light);
+    color: var(--teal);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .urgency {
+    font-size: 12px;
+    font-weight: 600;
+    color: #D85A30;
+    margin-bottom: 8px;
+  }
+  .promo-box {
+    background: var(--amber-light);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--amber);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .promo-code {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    background: #fff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid #BA7517;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  .checklist { margin-bottom: 10px; }
+  .check-row {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+  .check-icon { color: var(--teal); flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .divider-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin: 12px 0;
+    position: relative;
+  }
+  .divider-label::before,
+  .divider-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--border);
+  }
+  .divider-label::before { left: 0; }
+  .divider-label::after { right: 0; }
+
+  /* ── TESTIMONIAL ─────────────────────────────────────────── */
+  .testimonial {
+    border-left: 3px solid var(--border);
+    padding: 10px 14px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .testimonial-attr {
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-weight: 600;
+  }
+
+  /* ── EMAIL CONFIRM ───────────────────────────────────────── */
+  .email-confirm {
+    background: var(--purple-light);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--purple-dark);
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  .quiz-footer {
+    text-align: center;
+    padding: 14px 28px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+  .quiz-footer a { color: var(--purple); text-decoration: none; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 500px) {
+    body { padding: 0; align-items: flex-start; }
+    .container { border-radius: 0; }
+    .screen { padding: 20px 18px; }
+    .header-band { padding: 16px 18px 14px; }
+    .header-band h1 { font-size: 16px; }
+    .intro-hero h2 { font-size: 19px; }
+    .q-text { font-size: 15px; }
+    .result-score { font-size: 48px; }
+    .dim-name { width: 120px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER BAND -->
+  <div class="header-band">
+    <div class="brand">Chinmay Ananda · Finance Academy</div>
+    <h1>7-Dimension Financial Decision-Making Assessment</h1>
+  </div>
+
+  <!-- PROGRESS (hidden on intro) -->
+  <div class="progress-wrap" id="progress-wrap" style="display:none">
+    <div class="progress-label">
+      <span id="progress-dim-label" style="font-weight:600;color:#5B4BB5"></span>
+      <span id="progress-q-label"></span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  </div>
+
+  <!-- ── SCREEN: INTRO ─────────────────────────────────────── -->
+  <div class="screen active" id="screen-intro">
+    <div class="intro-hero">
+      <h2>Where Do You Stand as a Financial Decision-Maker?</h2>
+      <p>This free 3-minute assessment maps your financial decision-making ability across 7 dimensions — from reading financial statements to using AI in finance.</p>
+      <p>Answer honestly. At the end, you'll receive a personalised score, a dimension-by-dimension breakdown, and a clear recommendation on your next step.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">15</div><div class="stat-lbl">Questions</div></div>
+        <div class="stat"><div class="stat-num">~3 min</div><div class="stat-lbl">To complete</div></div>
+        <div class="stat"><div class="stat-num">Free</div><div class="stat-lbl">No cost</div></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>First name</label>
+      <input type="text" id="inp-name" placeholder="e.g. Priya" maxlength="60">
+    </div>
+    <div class="form-group">
+      <label>Email address <span class="req">*</span></label>
+      <input type="email" id="inp-email" placeholder="your@email.com">
+      <div class="hint">Your personalised result will be sent here. No spam, ever.</div>
+    </div>
+    <div class="form-group">
+      <label>I am primarily a… <span style="font-weight:400;color:#aaa">(optional)</span></label>
+      <select id="inp-role">
+        <option value="">Select your role</option>
+        <option>Business Owner / Entrepreneur</option>
+        <option>C-Suite / Director</option>
+        <option>Senior Manager / Head of Function</option>
+        <option>Mid-Level Manager</option>
+        <option>Startup Founder</option>
+        <option>Other professional</option>
+      </select>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="startQuiz()">Start the Assessment →</button>
+    <div class="error-msg" id="intro-error">Please enter a valid email address to continue.</div>
+  </div>
+
+  <!-- ── SCREEN: QUESTION ──────────────────────────────────── -->
+  <div class="screen" id="screen-question">
+    <div class="dim-tag" id="q-dim-tag"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-context" id="q-context"></div>
+    <div id="options-list"></div>
+    <div class="nav-row">
+      <button class="btn" id="btn-back" onclick="goBack()">← Back</button>
+      <span class="q-counter" id="q-counter"></span>
+      <button class="btn btn-primary" id="btn-next" onclick="goNext()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN: RESULT ────────────────────────────────────── -->
+  <div class="screen" id="screen-result">
+    <div id="result-content"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="quiz-footer">
+    <a href="https://www.chinmayananda.com" target="_blank">chinmayananda.com</a> &nbsp;·&nbsp; Finance Academy
+  </div>
+
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// CONFIGURATION — UPDATE THESE URLS BEFORE GOING LIVE
+// ════════════════════════════════════════════════════════════════
+const CONFIG = {
+  bookUrlIndia:       "https://www.amazon.in/dp/1648997244",
+  bookUrlWorld:       "https://www.amazon.com/dp/1648997244",
+  essentialsUrl:      "https://mbf.financeacademy.com.au/",   // UPDATE: Vimeo/course page for Essentials
+  fullProgramUrl:     "https://mbf.financeacademy.com.au/",   // UPDATE: Vimeo/course page for Full Program
+  essentialsCode:     "GETSTARTED",
+  fullProgramCode:    "FULLPROGRAM",
+  // EmailJS config — fill in after setting up EmailJS (see developer notes below)
+  emailjsServiceId:   "YOUR_SERVICE_ID",
+  emailjsTemplateId:  "YOUR_TEMPLATE_ID",
+  emailjsPublicKey:   "YOUR_PUBLIC_KEY",
+};
+
+// ════════════════════════════════════════════════════════════════
+// QUESTIONS DATA
+// ════════════════════════════════════════════════════════════════
+const QUESTIONS = [
+  {
+    dim: "D1 · Reading Financial Statements",
+    dimColor: "#5B4BB5", dimBg: "#EEEDFE",
+    q: "When someone hands you a company's Profit & Loss Statement, what typically happens?",
+    ctx: "Be honest — this is the most common starting point for most professionals.",
+    opts: [
+      "I quietly pass it to someone else — it's not really my area.",
+      "I recognise the document but struggle to read it independently.",
+      "I can follow the key line items but the full picture isn't always clear.",
+      "I read it comfortably and can spot what matters.",
+      "I read all three financial statements fluently and connect them to each other."
+    ]
+  },
+  {
+    dim: "D1 · Reading Financial Statements",
+    dimColor: "#5B4BB5", dimBg: "#EEEDFE",
+    q: "A colleague tells you their business had its best revenue month ever — but they're struggling to pay salaries. How clearly can you explain why this is possible?",
+    ctx: "This is one of the most dangerous and common confusions in business.",
+    opts: [
+      "Honestly, I'm not fully clear on how that can happen.",
+      "I know it's possible but would struggle to explain the reason clearly.",
+      "I could give a rough explanation — probably something about customers not paying yet.",
+      "I can explain it clearly — revenue is recognised when invoiced, not when cash is received.",
+      "I can explain it fully, illustrate it with the P&L vs Cash Flow Statement, and connect it to working capital."
+    ]
+  },
+  {
+    dim: "D2 · Understanding Financial Concepts",
+    dimColor: "#0F6E56", dimBg: "#E1F5EE",
+    q: "How would you describe the difference between Finance and Accounting to a new team member?",
+    ctx: "Most people in business use these terms interchangeably — they shouldn't.",
+    opts: [
+      "I don't think there's much of a difference — they're both about numbers.",
+      "I know they're different but can't clearly articulate how.",
+      "I'd say accounting records the past, finance plans the future — but I'd be uncertain.",
+      "I can explain it clearly: accounting ends where finance begins.",
+      "I can explain both, describe the accounting process, and connect it to forward-looking financial decisions."
+    ]
+  },
+  {
+    dim: "D2 · Understanding Financial Concepts",
+    dimColor: "#0F6E56", dimBg: "#E1F5EE",
+    q: "Your business is showing a healthy net profit on the P&L. Your banker calls to say your account is overdrawn. Which of the following best explains why this can happen?",
+    ctx: "This trips up even experienced business owners and senior managers.",
+    opts: [
+      "That shouldn't be possible — if you're profitable, you have money.",
+      "Probably an accounting error somewhere.",
+      "It could be because customers haven't paid yet, but I'm not fully sure of the mechanism.",
+      "Profit is an accounting entry; cash depends on when money actually moves — timing differences cause this.",
+      "I can explain this fully: accrual accounting, debtors, creditors, working capital cycle — and how to prevent it."
+    ]
+  },
+  {
+    dim: "D3 · Analyzing Numbers",
+    dimColor: "#854F0B", dimBg: "#FAEEDA",
+    q: "You're looking at two years of financial data for your business. How do you typically approach the analysis?",
+    ctx: "How you analyze numbers says a lot about your financial maturity.",
+    opts: [
+      "I look at the bottom line — if profit went up, things are good.",
+      "I compare total revenue and costs year-on-year but don't go much deeper.",
+      "I look at gross margins, overhead ratios, and a few key numbers I know matter.",
+      "I use ratio analysis — profitability, liquidity, efficiency — to identify patterns and flag concerns.",
+      "I run a full multi-layered analysis: ratios, trends, benchmarks, unit economics — and build a clear view."
+    ]
+  },
+  {
+    dim: "D3 · Analyzing Numbers",
+    dimColor: "#854F0B", dimBg: "#FAEEDA",
+    q: "How well do you know where costs are leaking in your business or function right now?",
+    ctx: '"What gets measured, gets managed." — Peter Drucker',
+    opts: [
+      "I rely entirely on the finance team to flag cost issues.",
+      "I have a general sense but no structured way of tracking it.",
+      "I track some costs but don't have a complete picture.",
+      "I regularly review cost breakdowns by category and know my fixed vs variable split.",
+      "I have a live cost-monitoring approach and can spot anomalies before they impact the bottom line."
+    ]
+  },
+  {
+    dim: "D4 · Interpreting Insights",
+    dimColor: "#993C1D", dimBg: "#FAECE7",
+    q: "Your gross profit margin improved this quarter but net profit dropped. What does your gut tell you to look at first?",
+    ctx: "Interpreting financial signals is where real decision-making begins.",
+    opts: [
+      "I'm not sure what to look for — I'd ask someone from finance.",
+      "I'd see there's a problem but struggle to identify what's driving it.",
+      "I'd look at overheads — something in operating costs must have increased.",
+      "I'd investigate overheads, interest charges, and one-off items — and connect them to operational decisions.",
+      "I'd run a layered interpretation: EBITDA vs PBIT vs PAT, flag the driver, and frame it as a business decision."
+    ]
+  },
+  {
+    dim: "D4 · Interpreting Insights",
+    dimColor: "#993C1D", dimBg: "#FAECE7",
+    q: "How often do financial numbers genuinely inform your decisions — versus being reviewed after the fact?",
+    ctx: "Hindsight, insight, foresight — which one is driving your decisions?",
+    opts: [
+      "Mostly after the fact — I review results but they rarely change what I do next.",
+      "Sometimes I use them upfront but it's not a consistent habit.",
+      "I use them regularly for major decisions but not consistently across all choices.",
+      "Financial signals actively shape most of my decisions — I check numbers before committing.",
+      "I anticipate what the numbers will say before I even see them. Interpretation drives my strategy."
+    ]
+  },
+  {
+    dim: "D5 · Evaluating & Deciding",
+    dimColor: "#185FA5", dimBg: "#E6F1FB",
+    q: "You're considering hiring a new team member. The role will cost $50,000 per year all-in. How do you evaluate whether to proceed?",
+    ctx: "Every hiring decision is ultimately a financial decision.",
+    opts: [
+      "If the business feels ready and the person seems right, I'd hire.",
+      "I'd check if we can currently afford the salary based on cash flow.",
+      "I'd consider the revenue impact, payback period, and whether this affects our break-even.",
+      "I'd model the ROI — revenue or savings generated vs total cost of hire — and stress-test the assumptions.",
+      "I'd run a full scenario analysis: best, base, and worst case — with a clear, evidence-backed go/no-go recommendation."
+    ]
+  },
+  {
+    dim: "D5 · Evaluating & Deciding",
+    dimColor: "#185FA5", dimBg: "#E6F1FB",
+    q: "In your opinion, which of the following best describes the ideal financial position for a healthy business?",
+    ctx: "Think about this the same way a doctor thinks about blood pressure — not high, not low, but balanced.",
+    opts: [
+      "More cash in the bank is always better. More loans should always be avoided.",
+      "Less debt is always better. Cash reserves should be maximised wherever possible.",
+      "It depends on the situation — but I don't have a clear framework for deciding what's right.",
+      "It's about balance — too much idle cash is wasteful, too much debt is risky. The right level depends on the goal.",
+      "Balance requires measurement. I actively monitor cash, debt, and working capital ratios to ensure resources are used optimally — not just accumulated."
+    ]
+  },
+  {
+    dim: "D6 · Financial Storytelling",
+    dimColor: "#3B6D11", dimBg: "#EAF3DE",
+    q: "You need to present your department's financial performance to the leadership team. What does your presentation typically look like?",
+    ctx: "How you communicate numbers matters as much as the numbers themselves.",
+    opts: [
+      "I share the spreadsheet or report and walk through the numbers as they appear.",
+      "I add some commentary but the narrative isn't always clear or well structured.",
+      "I structure it around what happened, why it happened, and what we should do next.",
+      "I lead with the key insight, use an analogy or story to make it land, and close with a clear recommendation.",
+      "My financial presentations set the agenda in the room. People leave knowing exactly what to decide — and why."
+    ]
+  },
+  {
+    dim: "D6 · Financial Storytelling",
+    dimColor: "#3B6D11", dimBg: "#EAF3DE",
+    q: "If you had to explain 'working capital cycle' to a non-finance colleague using only a story or everyday analogy — how comfortable would you be?",
+    ctx: "Financial storytelling is making numbers visual in the mind of the listener.",
+    opts: [
+      "I wouldn't know where to begin — I'd leave it to the finance team to explain.",
+      "I'd try but I'd probably lose them halfway through.",
+      "I could give a decent explanation with a straightforward example.",
+      "I'd use a vivid, relatable analogy that makes the concept click immediately.",
+      "I do this regularly — I have go-to stories for most financial concepts that land every time, with any audience."
+    ]
+  },
+  {
+    dim: "D7 · AI in Finance",
+    dimColor: "#993C1D", dimBg: "#FAECE7",
+    q: "How are you currently using AI tools (such as ChatGPT, Claude, Gemini, or Copilot) in your financial work or decision-making?",
+    ctx: "An amateur with AI can outperform an expert without it — the question is where you are on that curve.",
+    opts: [
+      "I haven't used AI for any financial task.",
+      "I've tried AI tools a couple of times but don't use them in any structured way.",
+      "I use AI occasionally — summarising reports or drafting memos — but not for financial analysis.",
+      "I regularly use AI to analyse data, run scenarios, and draft financial summaries.",
+      "AI is integrated into how I make decisions. I prompt with precision and critically evaluate what it produces."
+    ]
+  },
+  {
+    dim: "D7 · AI in Finance",
+    dimColor: "#993C1D", dimBg: "#FAECE7",
+    q: "Imagine uploading your company's last annual report to an AI tool and asking it to identify the top 3 financial risks. What would you do with the output?",
+    ctx: "The human role is what AI cannot replace — judgment, context, and lived experience.",
+    opts: [
+      "I wouldn't know how to do this or what to make of the output.",
+      "I'd read the output but wouldn't know how to evaluate whether it's accurate.",
+      "I'd use it as a starting point but would want the finance team to validate it.",
+      "I'd interrogate the output — challenge assumptions, ask follow-up questions, connect it to business context.",
+      "This is something I already do. I combine AI output with my own judgment to reach insights neither could produce alone."
+    ]
+  },
+  {
+    dim: "Overall Self-Reflection",
+    dimColor: "#5B4BB5", dimBg: "#EEEDFE",
+    q: "If your business or role had a financial X-ray taken today, how confident are you that the picture would show a healthy, informed decision-maker?",
+    ctx: "No judgment here. Your honest answer helps us give you the most relevant recommendation.",
+    opts: [
+      "Not confident — there are significant gaps I know I need to address.",
+      "Somewhat uncertain — I have awareness but lack the structure and tools to act on it.",
+      "Reasonably confident — I'm functional but know there's a level above where I currently operate.",
+      "Confident — I make sound decisions but want to sharpen my edge, especially when it comes to AI.",
+      "Very confident — I lead with financial intelligence and I want to stay at the frontier."
+    ]
+  }
+];
+
+// ════════════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════════════
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let userName = "";
+let userEmail = "";
+let userRole = "";
+
+// ════════════════════════════════════════════════════════════════
+// SCORING
+// ════════════════════════════════════════════════════════════════
+function calcResults() {
+  const raw = answers.reduce((s, a) => s + (a !== null ? a + 1 : 1), 0);
+  const pct = Math.round((raw / (QUESTIONS.length * 5)) * 100);
+  // Dimension sub-scores: Q pairs 0-1, 2-3, 4-5, 6-7, 8-9, 10-11, 12-13; Q14 = overall
+  const dimPairs = [[0,1],[2,3],[4,5],[6,7],[8,9],[10,11],[12,13]];
+  const dimScores = dimPairs.map(([a,b]) => {
+    const sa = answers[a] !== null ? answers[a] + 1 : 1;
+    const sb = answers[b] !== null ? answers[b] + 1 : 1;
+    return Math.round(((sa + sb) / 10) * 100);
+  });
+  let stage, stageColor, stageBg;
+  if      (pct >= 80) { stage = "Navigator";    stageColor = "#3C3489"; stageBg = "#EEEDFE"; }
+  else if (pct >= 60) { stage = "Proficient";   stageColor = "#0C447C"; stageBg = "#E6F1FB"; }
+  else if (pct >= 40) { stage = "Practitioner"; stageColor = "#085041"; stageBg = "#E1F5EE"; }
+  else if (pct >= 25) { stage = "Aware";        stageColor = "#633806"; stageBg = "#FAEEDA"; }
+  else                { stage = "Unaware";      stageColor = "#A32D2D"; stageBg = "#FCE8E8"; }
+  return { raw, pct, dimScores, stage, stageColor, stageBg };
+}
+
+// ════════════════════════════════════════════════════════════════
+// RESULT CONTENT BUILDER
+// ════════════════════════════════════════════════════════════════
+const TIERS = {
+  "Unaware": {
+    headline: "Every expert started exactly where you are.",
+    subline: "Right now, finance may feel like someone else's job. But every decision you make — who to hire, what to charge, whether to invest — is a financial decision. The moment you start seeing this, everything changes. Here are three ways to start, at every budget.",
+    testimonial: { text: "Chinmay made finance fun to learn — one of the best sessions I've attended in a long time.", attr: "Angshuman, Co-founder, Indianstartups.com" },
+    cards: [
+      { type: "featured", badge: "Best first step", badgeClass: "badge-purple",
+        icon: "📖", title: "The Bottomline — Book by Chinmay Ananda",
+        desc: "Written in plain English with real business stories. Builds your financial foundation from the ground up — no jargon, no prior background needed. If finance has ever felt intimidating, this book was written for you.",
+        checks: ["Understand P&L, Balance Sheet and Cash Flow in plain language","Learn why profitable businesses run out of cash — and how to avoid it","Build a CFO mindset without a finance background","Available on Amazon — India and worldwide"],
+        btnLabel: "📖 Get the book on Amazon ↗", btnClass: "btn-primary", btnUrlKey: "book",
+        priceNow: null },
+      { type: "normal",
+        icon: "🎬", title: "Business Finance Essentials — 18 Videos · 75 Minutes",
+        desc: "The fastest way to build your financial vocabulary. 18 focused lessons covering all financial statement basics, key ratios, and cash flow — at your own pace, on any device.",
+        checks: ["18 focused video lessons — watch in any order","Covers all financial statement basics, key ratios, and cash flow","Lifetime access — revisit any time"],
+        priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
+        urgency: "⏰ This price is available for the next 24 hours only",
+        promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
+        btnLabel: "🎬 Unlock for $9.99 — 24 hrs only ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" },
+      { type: "gold", badge: "Best value — 24 hrs", badgeClass: "badge-gold",
+        icon: "📊", title: "Analyzing Business Finance — 36 Videos · 4.5 Hours",
+        desc: "The complete program. If you want to go from Unaware to fully capable in the shortest time — this is the most direct route. All 7 dimensions including AI in Finance.",
+        checks: ["36 video lessons covering all 7 dimensions end to end","4.5 hours of structured, practical content","Includes AI in Finance — tools, prompts, and decision workflows","Lifetime access with future updates"],
+        priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
+        urgency: "⏰ Assessment discount — valid for 24 hours only",
+        promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
+        btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" }
+    ]
+  },
+  "Aware": {
+    headline: "You see the gaps. Now let's close them — fast.",
+    subline: "You know finance matters. You've seen what happens when numbers are ignored. What's missing is a structured framework that turns your awareness into confident, informed decisions. Here are three ways to get there.",
+    testimonial: { text: "I would highly recommend Chinmay's program to business owners, C-suite executives and budding entrepreneurs.", attr: "Louise Lucas, CEO, The Property Education Company, Australia" },
+    cards: [
+      { type: "featured", badge: "Start here", badgeClass: "badge-purple",
+        icon: "📖", title: "The Bottomline — Book by Chinmay Ananda",
+        desc: "The mental models and storytelling frameworks that make financial thinking click. Read this first — it will make everything else faster to absorb.",
+        checks: ["Plain English — no jargon, no prior finance background needed","Decision-making frameworks built into every chapter","Available on Amazon — India and worldwide"],
+        btnLabel: "📖 Get the book on Amazon ↗", btnClass: "btn-primary", btnUrlKey: "book",
+        priceNow: null },
+      { type: "normal",
+        icon: "🎬", title: "Business Finance Essentials — 18 Videos · 75 Minutes",
+        desc: "Pair this with the book and you'll cover all core financial concepts in under a week. 18 bite-sized lessons, self-paced, lifetime access.",
+        checks: ["18 video lessons — all financial statement essentials","75 minutes total — built for busy professionals","Lifetime access on any device"],
+        priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
+        urgency: "⏰ This price is available for the next 24 hours only",
+        promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
+        btnLabel: "🎬 Unlock for $9.99 — 24 hrs only ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" },
+      { type: "gold", badge: "Most complete — 24 hrs", badgeClass: "badge-gold",
+        icon: "📊", title: "Analyzing Business Finance — 36 Videos · 4.5 Hours",
+        desc: "If you want to go from Aware to fully capable — across all 7 dimensions including AI in Finance — this is the most complete path.",
+        checks: ["All 7 dimensions — from reading statements to AI in Finance","36 videos · 4.5 hours of structured, practical content","Financial storytelling module — present numbers that move people","Lifetime access with future updates"],
+        priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
+        urgency: "⏰ Assessment discount — valid for 24 hours only",
+        promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
+        btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" }
+    ]
+  },
+  "Practitioner": {
+    headline: "You have the instincts. Now add the framework.",
+    subline: "You're making decisions that work — most of the time. But they're built on experience and gut feel more than structured financial thinking. The professionals who rise fastest at your stage are the ones who systematise what they already know.",
+    testimonial: { text: "Chinmay's portrayal of how money should be handled in a business is remarkable. A must-read for financial management.", attr: "Viney Shawney, Finance Professor, Harvard University" },
+    cards: [
+      { type: "gold", badge: "Recommended for your level", badgeClass: "badge-gold",
+        icon: "📊", title: "Analyzing Business Finance — 36 Videos · 4.5 Hours",
+        desc: "You're ready for the full program. This is where practitioners become proficient decision-makers — with structured frameworks across all 7 dimensions, including AI-powered finance tools.",
+        checks: ["36 videos covering all 7 dimensions of financial decision-making","4.5 hours — structured, practical, self-paced","AI in Finance module — tools, prompts, and decision workflows","Financial storytelling — communicate numbers that move stakeholders","Lifetime access with future updates"],
+        priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
+        urgency: "⏰ Assessment discount — valid for 24 hours only",
+        promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
+        btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" },
+      { type: "normal",
+        icon: "🎬", title: "Business Finance Essentials — 18 Videos · 75 Minutes",
+        desc: "Prefer to start smaller? 18 focused lessons covering the core financial essentials — at a price that makes it a very easy yes.",
+        checks: ["18 video lessons — core financial essentials","75 minutes total — self-paced, any device","Lifetime access"],
+        priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
+        urgency: "⏰ 24-hour offer only",
+        promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
+        btnLabel: "🎬 Start with essentials for $9.99 ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" },
+      { type: "featured",
+        icon: "📖", title: "The Bottomline — Book by Chinmay Ananda",
+        desc: "A powerful companion to either program. The storytelling frameworks and decision models in the book reinforce everything the videos teach — and it's a reference you'll return to.",
+        checks: ["Plain English financial decision-making frameworks","Great companion to the video programs","Available on Amazon — India and worldwide"],
+        btnLabel: "📖 Get the book on Amazon ↗", btnClass: "btn-primary", btnUrlKey: "book",
+        priceNow: null }
+    ]
+  },
+  "Proficient": {
+    headline: "You're good. The question is — are you leading?",
+    subline: "You make sound financial decisions and you're comfortable with numbers. But there's a meaningful gap between being financially capable and being the person in the room who shifts the conversation. Financial storytelling and AI integration close that gap.",
+    testimonial: { text: "If you have this knowledge, you will have it for life.", attr: "Louise Lucas, CEO, The Property Education Company, Australia" },
+    cards: [
+      { type: "gold", badge: "Recommended for your level", badgeClass: "badge-gold",
+        icon: "📊", title: "Analyzing Business Finance — 36 Videos · 4.5 Hours",
+        desc: "At your level, the most valuable modules are Dimension 6 — Financial Storytelling — and Dimension 7 — AI in Finance. These are the two that separate capable professionals from those who set the agenda.",
+        checks: ["Advanced financial storytelling — present to boards and CXOs with impact","Full AI in Finance module — build a personal AI-assisted decision process","All 7 dimensions with case studies and decision frameworks","Lifetime access with updates as AI in finance evolves"],
+        priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
+        urgency: "⏰ Assessment discount — valid for 24 hours only",
+        promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
+        btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" },
+      { type: "featured",
+        icon: "📖", title: "The Bottomline — Book by Chinmay Ananda",
+        desc: "If you haven't read it, add it now. The storytelling frameworks in the book are a powerful companion to the advanced program modules.",
+        checks: ["Advanced storytelling and decision-making frameworks","Ideal companion to the full program","Available on Amazon — India and worldwide"],
+        btnLabel: "📖 Get the book on Amazon ↗", btnClass: "btn-primary", btnUrlKey: "book",
+        priceNow: null },
+      { type: "normal",
+        icon: "🎬", title: "Business Finance Essentials — 18 Videos · 75 Minutes",
+        desc: "A useful resource to share with colleagues or team members earlier in their financial journey.",
+        checks: ["18 core video lessons — great for team sharing","75 minutes total — self-paced","Lifetime access"],
+        priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
+        urgency: "⏰ 24-hour offer only",
+        promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
+        btnLabel: "🎬 $9.99 — share with your team ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" }
+    ]
+  },
+  "Navigator": {
+    headline: "You're at the frontier. Let's keep you there.",
+    subline: "Your financial intelligence is strong. The edge from here is staying ahead of how AI is reshaping financial decision-making — and sharpening the storytelling that sets the agenda in the most senior rooms.",
+    testimonial: { text: "Chinmay's portrayal of how money should be handled in a business is remarkable.", attr: "Viney Shawney, Finance Professor, Harvard University" },
+    cards: [
+      { type: "gold", badge: "Your level", badgeClass: "badge-gold",
+        icon: "📊", title: "Analyzing Business Finance — 36 Videos · 4.5 Hours",
+        desc: "You're here for the advanced content — AI-powered scenario planning, boardroom-level financial storytelling, and the Navigator decision model. Plus a framework you can pass on to your team.",
+        checks: ["AI integration — build your personal AI-assisted decision process","Boardroom-level financial storytelling — set the agenda, not just attend","The Navigator decision model — human judgment + AI insight","Lifetime access with updates as AI in finance continues to evolve"],
+        priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
+        urgency: "⏰ Assessment discount — valid for 24 hours only",
+        promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
+        btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" },
+      { type: "featured",
+        icon: "📖", title: "The Bottomline — Book by Chinmay Ananda",
+        desc: "The storytelling companion to the program. At your level it serves as both a reference and a tool to build financial literacy across your organisation.",
+        checks: ["Storytelling and decision frameworks for senior leaders","Ideal team reference resource","Available on Amazon — India and worldwide"],
+        btnLabel: "📖 Get the book on Amazon ↗", btnClass: "btn-primary", btnUrlKey: "book",
+        priceNow: null },
+      { type: "normal",
+        icon: "🎬", title: "Business Finance Essentials — 18 Videos · 75 Minutes",
+        desc: "At $9.99, this is an easy gift for any team member earlier in their financial journey.",
+        checks: ["18 core lessons — perfect for team gifting","75 minutes — self-paced","Lifetime access"],
+        priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
+        urgency: "⏰ 24-hour offer only",
+        promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
+        btnLabel: "🎬 Share with your team — $9.99 ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" }
+    ]
+  }
+};
+
+const DIM_NAMES = [
+  "Reading Statements","Understanding Concepts","Analyzing Numbers",
+  "Interpreting Insights","Evaluating & Deciding","Financial Storytelling","AI in Finance"
+];
+const DIM_COLORS = ["#5B4BB5","#0F6E56","#854F0B","#993C1D","#185FA5","#3B6D11","#993C1D"];
+
+// ════════════════════════════════════════════════════════════════
+// UI HELPERS
+// ════════════════════════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getUrl(key) {
+  if (key === 'book') return CONFIG.bookUrlIndia; // can show both in card
+  if (key === 'essentials') return CONFIG.essentialsUrl;
+  if (key === 'fullProgram') return CONFIG.fullProgramUrl;
+  return '#';
+}
+
+// ════════════════════════════════════════════════════════════════
+// QUIZ FLOW
+// ════════════════════════════════════════════════════════════════
+function startQuiz() {
+  const email = document.getElementById('inp-email').value.trim();
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    const err = document.getElementById('intro-error');
+    err.style.display = 'block';
+    return;
+  }
+  userName = document.getElementById('inp-name').value.trim() || 'there';
+  userEmail = email;
+  userRole = document.getElementById('inp-role').value;
+  answers = new Array(QUESTIONS.length).fill(null);
+  current = 0;
+  document.getElementById('progress-wrap').style.display = 'block';
+  showScreen('screen-question');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  const pct = Math.round((current / QUESTIONS.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-dim-label').textContent = q.dim;
+  document.getElementById('progress-dim-label').style.color = q.dimColor;
+  document.getElementById('progress-q-label').textContent = (current + 1) + ' of ' + QUESTIONS.length;
+  document.getElementById('q-dim-tag').textContent = q.dim;
+  document.getElementById('q-dim-tag').style.background = q.dimBg;
+  document.getElementById('q-dim-tag').style.color = q.dimColor;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-context').textContent = q.ctx;
+  const btnNext = document.getElementById('btn-next');
+  const btnBack = document.getElementById('btn-back');
+  btnNext.disabled = answers[current] === null;
+  btnNext.textContent = current === QUESTIONS.length - 1 ? 'See My Results →' : 'Next →';
+  btnBack.style.visibility = current === 0 ? 'hidden' : 'visible';
+  const list = document.getElementById('options-list');
+  list.innerHTML = '';
+  q.opts.forEach((text, i) => {
+    const div = document.createElement('div');
+    div.className = 'option' + (answers[current] === i ? ' selected' : '');
+    div.innerHTML = `<div class="option-radio"><div class="option-radio-dot"></div></div><div class="option-text">${text}</div>`;
+    div.onclick = () => selectOption(i);
+    list.appendChild(div);
+  });
+}
+
+function selectOption(i) {
+  answers[current] = i;
+  document.querySelectorAll('.option').forEach((o, idx) => o.classList.toggle('selected', idx === i));
+  document.getElementById('btn-next').disabled = false;
+}
+
+function goNext() {
+  if (answers[current] === null) return;
+  if (current === QUESTIONS.length - 1) { showResults(); return; }
+  current++;
+  renderQuestion();
+}
+
+function goBack() {
+  if (current > 0) { current--; renderQuestion(); }
+}
+
+// ════════════════════════════════════════════════════════════════
+// RESULTS RENDERER
+// ════════════════════════════════════════════════════════════════
+function showResults() {
+  document.getElementById('progress-fill').style.width = '100%';
+  document.getElementById('progress-q-label').textContent = 'Complete';
+  const { pct, dimScores, stage, stageColor, stageBg } = calcResults();
+  const firstName = userName.split(' ')[0];
+  const tier = TIERS[stage];
+
+  let cardsHtml = '';
+  tier.cards.forEach(card => {
+    const isFeatured = card.type === 'featured';
+    const isGold = card.type === 'gold';
+    const cardClass = isFeatured ? 'product-card featured' : isGold ? 'product-card gold' : 'product-card';
+    const badgeHtml = card.badge ? `<div class="product-badge ${card.badgeClass}">${card.badge}</div>` : '';
+    const priceHtml = card.priceNow ? `
+      <div class="price-row">
+        <span class="price-now ${card.pricePurple ? 'purple' : ''}${card.priceGold ? 'gold' : ''}">${card.priceNow}</span>
+        <span class="price-was">${card.priceWas}</span>
+        <span class="price-save">${card.priceSave}</span>
+      </div>
+      <div class="urgency">${card.urgency}</div>
+      <div class="promo-box">${card.promoLabel} <span class="promo-code">${card.promoCode}</span> ${card.promoSuffix}</div>
+    ` : '';
+    const checksHtml = card.checks.map(c => `<div class="check-row"><span class="check-icon">✓</span><span>${c}</span></div>`).join('');
+    // Book gets two links
+    const btnHtml = card.btnUrlKey === 'book'
+      ? `<a href="${CONFIG.bookUrlIndia}" target="_blank" class="btn ${card.btnClass} btn-full" style="display:block;text-decoration:none;margin-bottom:6px">${card.btnLabel} (India)</a>
+         <a href="${CONFIG.bookUrlWorld}" target="_blank" class="btn btn-outline-purple btn-full" style="display:block;text-decoration:none">📖 Get on Amazon International ↗</a>`
+      : `<a href="${getUrl(card.btnUrlKey)}" target="_blank" class="btn ${card.btnClass} btn-full" style="display:block;text-decoration:none">${card.btnLabel}</a>`;
+
+    cardsHtml += `<div class="${cardClass}">${badgeHtml}
+      <div class="product-title">${card.icon} ${card.title}</div>
+      <div class="product-desc">${card.desc}</div>
+      ${priceHtml}
+      <div class="checklist">${checksHtml}</div>
+      ${btnHtml}
+    </div>`;
+    if (tier.cards.indexOf(card) < tier.cards.length - 1) {
+      const labels = ["or go further, faster","or take the full leap","prefer to start smaller?","add this too","or begin here","pair it with","or revisit the foundations","and don't forget"];
+      cardsHtml += `<div class="divider-label">${labels[tier.cards.indexOf(card)] || 'or'}</div>`;
+    }
+  });
+
+  const dimBarsHtml = DIM_NAMES.map((name, i) => `
+    <div class="dim-row">
+      <div class="dim-name">${name}</div>
+      <div class="dim-bar-bg"><div class="dim-bar-fill" id="dim-bar-${i}" style="width:0%;background:${DIM_COLORS[i]}"></div></div>
+      <div class="dim-pct" id="dim-pct-${i}">0%</div>
+    </div>`).join('');
+
+  document.getElementById('result-content').innerHTML = `
+    <div class="result-hero">
+      <div class="result-score" style="color:${stageColor}">${pct}</div>
+      <div class="result-score-sub">out of 100</div>
+      <div class="stage-pill" style="background:${stageBg};color:${stageColor}">${stage}</div>
+      <div class="result-headline">${firstName !== 'there' ? firstName + ' — ' : ''}${tier.headline}</div>
+      <div class="result-subline">${tier.subline}</div>
+    </div>
+    <div class="dim-section">
+      <div class="dim-section-title">Your 7-Dimension Breakdown</div>
+      ${dimBarsHtml}
+    </div>
+    <div class="products-section">
+      <div class="products-section-title">Chinmay's recommendation for your stage</div>
+      ${cardsHtml}
+    </div>
+    <div class="testimonial">"${tier.testimonial.text}"<span class="testimonial-attr">— ${tier.testimonial.attr}</span></div>
+    <div class="email-confirm">
+      📬 Your personalised result has been sent to <strong>${userEmail}</strong>. 
+      Check your inbox — it includes your score, dimension breakdown, and all the links above.
+    </div>`;
+
+  showScreen('screen-result');
+
+  // Animate bars after render
+  setTimeout(() => {
+    dimScores.forEach((score, i) => {
+      const bar = document.getElementById('dim-bar-' + i);
+      const lbl = document.getElementById('dim-pct-' + i);
+      if (bar) bar.style.width = score + '%';
+      if (lbl) lbl.textContent = score + '%';
+    });
+  }, 200);
+
+  // Send email via EmailJS
+  sendResultEmail({ pct, stage, firstName, dimScores });
+}
+
+// ════════════════════════════════════════════════════════════════
+// EMAIL SENDING VIA EMAILJS
+// ════════════════════════════════════════════════════════════════
+function sendResultEmail({ pct, stage, firstName, dimScores }) {
+  // EmailJS must be loaded — see developer notes
+  if (typeof emailjs === 'undefined') { console.warn('EmailJS not loaded'); return; }
+  const bookLink = CONFIG.bookUrlIndia;
+  const essLink  = CONFIG.essentialsUrl;
+  const fullLink = CONFIG.fullProgramUrl;
+  emailjs.send(CONFIG.emailjsServiceId, CONFIG.emailjsTemplateId, {
+    to_email:      userEmail,
+    to_name:       firstName,
+    user_role:     userRole || 'Not specified',
+    score:         pct,
+    stage:         stage,
+    d1_score:      dimScores[0],
+    d2_score:      dimScores[1],
+    d3_score:      dimScores[2],
+    d4_score:      dimScores[3],
+    d5_score:      dimScores[4],
+    d6_score:      dimScores[5],
+    d7_score:      dimScores[6],
+    book_india:    bookLink,
+    book_world:    CONFIG.bookUrlWorld,
+    essentials_url: essLink,
+    full_program_url: fullLink,
+    essentials_code: CONFIG.essentialsCode,
+    full_program_code: CONFIG.fullProgramCode,
+  }, CONFIG.emailjsPublicKey)
+  .then(() => console.log('Result email sent'))
+  .catch(err => console.error('Email error:', err));
+}
+</script>
+
+<!-- EmailJS SDK — required for sending result emails -->
+<!-- Developer: Replace YOUR_PUBLIC_KEY with your actual EmailJS public key -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    if (typeof emailjs !== 'undefined' && CONFIG.emailjsPublicKey !== 'YOUR_PUBLIC_KEY') {
+      emailjs.init({ publicKey: CONFIG.emailjsPublicKey });
+    }
+  })();
+</script>
+
+</body>
+</html>
