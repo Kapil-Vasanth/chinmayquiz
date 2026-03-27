@@ -1189,7 +1189,28 @@ function showResults() {
   }, 200);
 
   // Send email via EmailJS
-  sendResultEmail({ pct, stage, firstName, dimScores });
+  // sendResultEmail({ pct, stage, firstName, dimScores });
+
+  trackQuiz({
+  pct,
+  stage,
+  firstName,
+  dimScores,
+  userEmail,
+  userRole
+});
+}
+
+async function trackQuiz(data) {
+  try {
+    await fetch('/.netlify/functions/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 // ════════════════════════════════════════════════════════════════
