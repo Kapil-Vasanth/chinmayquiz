@@ -17,7 +17,7 @@ export async function handler(event) {
 
     await resend.emails.send({
       from: 'Quiz Tracker <onboarding@resend.dev>',
-      to: ['kapilvasanthbalerao@email.com'], // 👈 YOUR email
+      to: ['kapilvasanthbalerao@gmail.com'], // 👈 YOUR email
       subject: `New Quiz Submission - ${firstName}`,
       html: `
         <h2>New Quiz Submission</h2>
