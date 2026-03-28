@@ -624,6 +624,8 @@ const CONFIG = {
   bookUrlWorld:       "https://www.amazon.com/dp/1648997244",
   essentialsUrl:      "https://mbf.financeacademy.com.au/",   // UPDATE: Vimeo/course page for Essentials
   fullProgramUrl:     "https://mbf.financeacademy.com.au/",   // UPDATE: Vimeo/course page for Full Program
+  abf: "https://vimeo.com/ondemand/abf",
+  bfe2022: "https://vimeo.com/ondemand/bfe2022",
   essentialsCode:     "GETSTARTED",
   fullProgramCode:    "FULLPROGRAM",
   // EmailJS config — fill in after setting up EmailJS (see developer notes below)
@@ -1010,7 +1012,37 @@ const TIERS = {
         priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
         urgency: "⏰ 24-hour offer only",
         promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
-        btnLabel: "🎬 Share with your team — $9.99 ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" }
+        btnLabel: "🎬 Share with your team — $9.99 ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" },
+        {
+          type: "normal",
+          icon: "🎥",
+          title: "Advanced Business Finance (ABF)",
+          desc: "Deep-dive program focused on advanced financial strategy, decision-making, and leadership-level insights.",
+          checks: [
+            "On-demand Vimeo access",
+            "Advanced finance frameworks",
+            "Self-paced learning"
+          ],
+          btnLabel: "🎥 Watch on Vimeo ↗",
+          btnClass: "btn-outline-purple",
+          btnUrlKey: "abf",
+          btnUrl: "https://vimeo.com/ondemand/abf"
+        },
+        {
+          type: "normal",
+          icon: "🎬",
+          title: "Business Finance Essentials 2022",
+          desc: "Foundational finance program covering key principles for business leaders and teams.",
+          checks: [
+            "On-demand Vimeo access",
+            "Beginner-friendly finance concepts",
+            "Great for team onboarding"
+          ],
+          btnLabel: "🎬 Watch on Vimeo ↗",
+          btnClass: "btn-outline-purple",
+          btnUrlKey: "bfe2022",
+          btnUrl: "https://vimeo.com/ondemand/bfe2022"
+        }
     ]
   }
 };
@@ -1034,6 +1066,8 @@ function getUrl(key) {
   if (key === 'book') return CONFIG.bookUrlIndia; // can show both in card
   if (key === 'essentials') return CONFIG.essentialsUrl;
   if (key === 'fullProgram') return CONFIG.fullProgramUrl;
+  if (key === 'abf') return "https://vimeo.com/ondemand/abf";
+  if (key === 'bfe2022') return "https://vimeo.com/ondemand/bfe2022";
   return '#';
 }
 
