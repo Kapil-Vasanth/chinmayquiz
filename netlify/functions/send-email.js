@@ -15,44 +15,45 @@ export async function handler(event) {
       userRole
     } = data;
 
-    await resend.batch.send({
-        from: 'Quiz Tracker <ca@chinmayananda.com>',
-        to: ['kapil.webstudiopro@gmail.com'],
-        subject: `New Quiz Submission - ${firstName}`,
-        html: `
-          <h2>New Quiz Submission</h2>
-          <p><strong>Name:</strong> ${firstName}</p>
-          <p><strong>Email:</strong> ${userEmail}</p>
-          <p><strong>Role:</strong> ${userRole || 'Not specified'}</p>
-          <hr/>
-          <p><strong>Score:</strong> ${pct}%</p>
-          <p><strong>Stage:</strong> ${stage}</p>
-          <ul>
-            ${dimScores.map((s, i) => `<li>D${i + 1}: ${s}</li>`).join('')}
-          </ul>
-        `
-      },
-      {
-        from: 'Quiz Team <ca@chinmayananda.com>',
-        to: [userEmail],
-        subject: `Your Quiz Results`,
-        html: `
-          <h2>Hi ${firstName},</h2>
+    await resend.batch.send([
+        {
+          from: 'Quiz Tracker <noreply@mg.chinmayanda.com>',
+          to: ['kapil.webstudiopro@gmail.com'],
+          subject: `New Quiz Submission - ${firstName}`,
+          html: `
+            <h2>New Quiz Submission</h2>
+            <p><strong>Name:</strong> ${firstName}</p>
+            <p><strong>Email:</strong> ${userEmail}</p>
+            <p><strong>Role:</strong> ${userRole || 'Not specified'}</p>
+            <hr/>
+            <p><strong>Score:</strong> ${pct}%</p>
+            <p><strong>Stage:</strong> ${stage}</p>
+            <ul>
+              ${dimScores.map((s, i) => `<li>D${i + 1}: ${s}</li>`).join('')}
+            </ul>
+          `
+        },
+        {
+          from: 'Quiz Team <noreply@mg.chinmayanda.com>',
+          to: [userEmail],
+          subject: `Your Quiz Results`,
+          html: `
+            <h2>Hi ${firstName},</h2>
       
-          <p>Thanks for taking the quiz!</p>
+            <p>Thanks for taking the quiz!</p>
       
-          <p><strong>Your Score:</strong> ${pct}%</p>
-          <p><strong>Your Stage:</strong> ${stage}</p>
+            <p><strong>Your Score:</strong> ${pct}%</p>
+            <p><strong>Your Stage:</strong> ${stage}</p>
       
-          <h3>Your Breakdown:</h3>
-          <ul>
-            ${dimScores.map((s, i) => `<li>Dimension ${i + 1}: ${s}</li>`).join('')}
-          </ul>
+            <h3>Your Breakdown:</h3>
+            <ul>
+              ${dimScores.map((s, i) => `<li>Dimension ${i + 1}: ${s}</li>`).join('')}
+            </ul>
       
-          <p>We’ll be in touch with next steps.</p>
-        `
-      }
-    );
+            <p>We’ll be in touch with next steps.</p>
+          `
+        }
+      ]);
       
       
       // ✅ SEND EMAIL TO USER
