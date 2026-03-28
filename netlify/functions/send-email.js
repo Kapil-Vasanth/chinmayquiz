@@ -16,7 +16,7 @@ export async function handler(event) {
     } = data;
 
     await resend.emails.send({
-        from: 'Quiz Tracker <onboarding@resend.dev>',
+        from: 'Quiz Tracker <info@chinmayanda.com>',
         to: ['kapil.webstudiopro@gmail.com'],
         subject: `New Quiz Submission - ${firstName}`,
         html: `
@@ -36,7 +36,7 @@ export async function handler(event) {
       
       // ✅ SEND EMAIL TO USER
       await resend.emails.send({
-        from: 'Quiz Team <onboarding@resend.dev>',
+        from: 'Quiz Team <info@chinmayanda.com>',
         to: [userEmail],
         subject: `Your Quiz Results`,
         html: `
