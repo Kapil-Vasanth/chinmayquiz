@@ -18,7 +18,7 @@ export async function handler(event) {
     await resend.batch.send([
         {
           from: 'Quiz Tracker <noreply@mg.chinmayananda.com>',
-          to: ['kapil.webstudiopro@gmail.com'],
+          to: ['ca@chinmayananda.com'],
           subject: `New Quiz Submission - ${firstName}`,
           html: `
             <h2>New Quiz Submission</h2>
