@@ -279,9 +279,9 @@ function buildEmailHtml({ firstName, pct, stage, dimScores, tier }) {
 
     const getUrl = (card) => {
       const URLS = {
-        book: "https://amazon.in/your-book",
-        essentials: "https://yourdomain.com/essentials",
-        fullProgram: "https://yourdomain.com/full-program",
+        book: "https://www.amazon.com/dp/1648997244",
+        essentials: "https://mbf.financeacademy.com.au",
+        fullProgram: "https://mbf.financeacademy.com.au",
         abf: "https://vimeo.com/ondemand/abf",
         bfe2022: "https://vimeo.com/ondemand/bfe2022"
       };
