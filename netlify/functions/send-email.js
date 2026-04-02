@@ -29,7 +29,37 @@ const TIERS = {
           priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
           urgency: "⏰ Assessment discount — valid for 24 hours only",
           promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
-          btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" }
+          btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" },
+          {
+            type: "normal",
+            icon: "🎥",
+            title: "Advanced Business Finance (ABF)",
+            desc: "Deep-dive program focused on advanced financial strategy, decision-making, and leadership-level insights.",
+            checks: [
+              "On-demand Vimeo access",
+              "Advanced finance frameworks",
+              "Self-paced learning"
+            ],
+            btnLabel: "🎥 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "abf",
+            btnUrl: "https://vimeo.com/ondemand/abf"
+          },
+          {
+            type: "normal",
+            icon: "🎬",
+            title: "Business Finance Essentials 2022",
+            desc: "Foundational finance program covering key principles for business leaders and teams.",
+            checks: [
+              "On-demand Vimeo access",
+              "Beginner-friendly finance concepts",
+              "Great for team onboarding"
+            ],
+            btnLabel: "🎬 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "bfe2022",
+            btnUrl: "https://vimeo.com/ondemand/bfe2022"
+          }
       ]
     },
     "Aware": {
@@ -58,7 +88,37 @@ const TIERS = {
           priceNow: "$300", priceGold: true, priceWas: "$500", priceSave: "Save $200",
           urgency: "⏰ Assessment discount — valid for 24 hours only",
           promoLabel: "Use code", promoCode: "FULLPROGRAM", promoSuffix: "at checkout",
-          btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" }
+          btnLabel: "📊 Enroll for $300 — 24 hrs only ↗", btnClass: "btn-gold", btnUrlKey: "fullProgram" },
+          {
+            type: "normal",
+            icon: "🎥",
+            title: "Advanced Business Finance (ABF)",
+            desc: "Deep-dive program focused on advanced financial strategy, decision-making, and leadership-level insights.",
+            checks: [
+              "On-demand Vimeo access",
+              "Advanced finance frameworks",
+              "Self-paced learning"
+            ],
+            btnLabel: "🎥 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "abf",
+            btnUrl: "https://vimeo.com/ondemand/abf"
+          },
+          {
+            type: "normal",
+            icon: "🎬",
+            title: "Business Finance Essentials 2022",
+            desc: "Foundational finance program covering key principles for business leaders and teams.",
+            checks: [
+              "On-demand Vimeo access",
+              "Beginner-friendly finance concepts",
+              "Great for team onboarding"
+            ],
+            btnLabel: "🎬 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "bfe2022",
+            btnUrl: "https://vimeo.com/ondemand/bfe2022"
+          }
       ]
     },
     "Practitioner": {
@@ -87,7 +147,37 @@ const TIERS = {
           desc: "A powerful companion to either program. The storytelling frameworks and decision models in the book reinforce everything the videos teach — and it's a reference you'll return to.",
           checks: ["Plain English financial decision-making frameworks","Great companion to the video programs","Available on Amazon — India and worldwide"],
           btnLabel: "📖 Get the book on Amazon ↗", btnClass: "btn-primary", btnUrlKey: "book",
-          priceNow: null }
+          priceNow: null },
+          {
+            type: "normal",
+            icon: "🎥",
+            title: "Advanced Business Finance (ABF)",
+            desc: "Deep-dive program focused on advanced financial strategy, decision-making, and leadership-level insights.",
+            checks: [
+              "On-demand Vimeo access",
+              "Advanced finance frameworks",
+              "Self-paced learning"
+            ],
+            btnLabel: "🎥 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "abf",
+            btnUrl: "https://vimeo.com/ondemand/abf"
+          },
+          {
+            type: "normal",
+            icon: "🎬",
+            title: "Business Finance Essentials 2022",
+            desc: "Foundational finance program covering key principles for business leaders and teams.",
+            checks: [
+              "On-demand Vimeo access",
+              "Beginner-friendly finance concepts",
+              "Great for team onboarding"
+            ],
+            btnLabel: "🎬 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "bfe2022",
+            btnUrl: "https://vimeo.com/ondemand/bfe2022"
+          }
       ]
     },
     "Proficient": {
@@ -116,7 +206,37 @@ const TIERS = {
           priceNow: "$9.99", pricePurple: true, priceWas: "$99", priceSave: "Save 90%",
           urgency: "⏰ 24-hour offer only",
           promoLabel: "Use code", promoCode: "GETSTARTED", promoSuffix: "at checkout",
-          btnLabel: "🎬 $9.99 — share with your team ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" }
+          btnLabel: "🎬 $9.99 — share with your team ↗", btnClass: "btn-outline-purple", btnUrlKey: "essentials" },
+          {
+            type: "normal",
+            icon: "🎥",
+            title: "Advanced Business Finance (ABF)",
+            desc: "Deep-dive program focused on advanced financial strategy, decision-making, and leadership-level insights.",
+            checks: [
+              "On-demand Vimeo access",
+              "Advanced finance frameworks",
+              "Self-paced learning"
+            ],
+            btnLabel: "🎥 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "abf",
+            btnUrl: "https://vimeo.com/ondemand/abf"
+          },
+          {
+            type: "normal",
+            icon: "🎬",
+            title: "Business Finance Essentials 2022",
+            desc: "Foundational finance program covering key principles for business leaders and teams.",
+            checks: [
+              "On-demand Vimeo access",
+              "Beginner-friendly finance concepts",
+              "Great for team onboarding"
+            ],
+            btnLabel: "🎬 Watch on Vimeo ↗",
+            btnClass: "btn-outline-purple",
+            btnUrlKey: "bfe2022",
+            btnUrl: "https://vimeo.com/ondemand/bfe2022"
+          }
       ]
     },
     "Navigator": {
@@ -199,23 +319,24 @@ export async function handler(event) {
     const html = buildEmailHtml({ firstName, pct, stage, dimScores, tier });
 
     await resend.batch.send([
-        // {
-        //   from: 'Quiz Tracker <noreply@mg.chinmayananda.com>',
+        {
+          from: 'Quiz Tracker <noreply@mg.chinmayananda.com>',
         //   to: ['ca@chinmayananda.com'],
-        //   subject: `New Quiz Submission - ${firstName}`,
-        //   html: `
-        //     <h2>New Quiz Submission</h2>
-        //     <p><strong>Name:</strong> ${firstName}</p>
-        //     <p><strong>Email:</strong> ${userEmail}</p>
-        //     <p><strong>Role:</strong> ${userRole || 'Not specified'}</p>
-        //     <hr/>
-        //     <p><strong>Score:</strong> ${pct}%</p>
-        //     <p><strong>Stage:</strong> ${stage}</p>
-        //     <ul>
-        //       ${dimScores.map((s, i) => `<li>D${i + 1}: ${s}</li>`).join('')}
-        //     </ul>
-        //   `
-        // },
+          to: ['kapilvasanthbalerao@gmail.com'],
+          subject: `New Quiz Submission - ${firstName}`,
+          html: `
+            <h2>New Quiz Submission</h2>
+            <p><strong>Name:</strong> ${firstName}</p>
+            <p><strong>Email:</strong> ${userEmail}</p>
+            <p><strong>Role:</strong> ${userRole || 'Not specified'}</p>
+            <hr/>
+            <p><strong>Score:</strong> ${pct}%</p>
+            <p><strong>Stage:</strong> ${stage}</p>
+            <ul>
+              ${dimScores.map((s, i) => `<li>D${i + 1}: ${s}</li>`).join('')}
+            </ul>
+          `
+        },
         {
             from: 'Chinmay <hello@mg.chinmayananda.com>',
             to: [userEmail],
@@ -241,29 +362,6 @@ export async function handler(event) {
         //   `
         }
       ]);
-      
-      
-      // ✅ SEND EMAIL TO USER
-    //   await resend.emails.send({
-    //     from: 'Quiz Team <info@chinmayananda.com>',
-    //     to: [userEmail],
-    //     subject: `Your Quiz Results`,
-    //     html: `
-    //       <h2>Hi ${firstName},</h2>
-      
-    //       <p>Thanks for taking the quiz!</p>
-      
-    //       <p><strong>Your Score:</strong> ${pct}%</p>
-    //       <p><strong>Your Stage:</strong> ${stage}</p>
-      
-    //       <h3>Your Breakdown:</h3>
-    //       <ul>
-    //         ${dimScores.map((s, i) => `<li>Dimension ${i + 1}: ${s}</li>`).join('')}
-    //       </ul>
-      
-    //       <p>We’ll be in touch with next steps.</p>
-    //     `
-    //   });
 
     return {
       statusCode: 200,
