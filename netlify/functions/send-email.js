@@ -217,7 +217,7 @@ export async function handler(event) {
         //   `
         // },
         {
-            from: 'Chinmay <hello@chinmayananda.com>',
+            from: 'Chinmay <hello@mg.chinmayananda.com>',
             to: [userEmail],
             subject: `${firstName}, your financial score: ${pct}/100`,
             html: `
