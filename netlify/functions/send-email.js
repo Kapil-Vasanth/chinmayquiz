@@ -217,10 +217,13 @@ export async function handler(event) {
         //   `
         // },
         {
-          from: 'Quiz Team <noreply@mg.chinmayananda.com>',
-          to: [userEmail],
-          subject: `Your Quiz Results`,
-          html
+            from: 'Chinmay <hello@chinmayananda.com>',
+            to: [userEmail],
+            subject: `${firstName}, your financial score: ${pct}/100`,
+            html: `
+              ${html}
+              <p style="margin-top:20px;">If you have any questions, just reply to this email.</p>
+            `
         //   html: `
         //     <h2>Hi ${firstName},</h2>
       
